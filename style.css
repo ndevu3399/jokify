@@ -1,0 +1,43 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: lightblue;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-box {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.buttons button {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    background: darkblue;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#copy {
+    margin-top: 20px;
+    background: green;
+}
+
+button:hover {
+    opacity: 0.8;
+}
