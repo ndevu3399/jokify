@@ -1,78 +1,64 @@
-const text = document.getElementById("text");
-const copyButton = document.getElementById("copy");
-const buttons = document.querySelectorAll("button");
+// Selecting elements
+const contentDisplay = document.getElementById("content");
+const loadingMessage = document.getElementById("loading");
+const copyButton = document.getElementById("copy-btn");
 
-document.getElementById("random").addEventListener("click", fetchRandom);
-document.getElementById("joke").addEventListener("click", fetchJoke);
-document.getElementById("dadJoke").addEventListener("click", fetchDadJoke);
-document.getElementById("kanye").addEventListener("click", fetchKanyeQuote);
-document.getElementById("inspire").addEventListener("click", fetchInspiringQuote);
-copyButton.addEventListener("click", copyToClipboard);
+// API URLs
+const apis = {
+    jokeAPI: "https://v2.jokeapi.dev/joke/Any?type=single",
+    dadJoke: "https://icanhazdadjoke.com/",
+    kanyeQuote: "https://api.kanye.rest/",
+    randomQuote: "https://api.quotable.io/random"
+};
 
-async function fetchRandom() {
-    const apis = [fetchJoke, fetchDadJoke, fetchKanyeQuote, fetchInspiringQuote];
-    const randomApi = apis[Math.floor(Math.random() * apis.length)];
-    await randomApi();
-}
 
-async function fetchData(url, processData) {
+async function fetchContent(apiUrl, headers = {}) {
     try {
-        showLoading();
-        const res = await fetch(url, { headers: { Accept: "application/json" } });
-        if (!res.ok) throw new Error("Failed to fetch data");
-        const data = await res.json();
-        processData(data);
+        
+        loadingMessage.style.display = "block";
+        contentDisplay.classList.remove("show");
+
+        const response = await fetch(apiUrl, headers);
+        const data = await response.json();
+
+        
+        let contentText = "";
+        if (apiUrl.includes("jokeapi")) {
+            contentText = data.joke;
+        } else if (apiUrl.includes("icanhazdadjoke")) {
+            contentText = data.joke;
+        } else if (apiUrl.includes("kanye.rest")) {
+            contentText = `"${data.quote}" - Kanye West`;
+        } else if (apiUrl.includes("quotable.io")) {
+            contentText = `"${data.content}" - ${data.author}`;
+        }
+
+        
+        contentDisplay.textContent = contentText;
+        setTimeout(() => contentDisplay.classList.add("show"), 100);
+
+        
+        loadingMessage.style.display = "none";
+
     } catch (error) {
-        text.innerText = "Oops! Something went wrong. Try again!";
-        console.error(error);
-    } finally {
-        hideLoading();
+        console.error("Error fetching data:", error);
+        contentDisplay.textContent = "Oops! Something went wrong. Try again.";
+        loadingMessage.style.display = "none";
     }
 }
 
-async function fetchJoke() {
-    fetchData("https://v2.jokeapi.dev/joke/Any?type=single", data => {
-        text.innerText = data.joke;
-    });
-}
 
-async function fetchDadJoke() {
-    fetchData("https://icanhazdadjoke.com/", data => {
-        text.innerText = data.joke;
-    });
-}
+copyButton.addEventListener("click", () => {
+    const text = contentDisplay.textContent;
+    if (text) {
+        navigator.clipboard.writeText(text).then(() => {
+            copyButton.textContent = "Copied!";
+            setTimeout(() => copyButton.textContent = "Copy", 1500);
+        });
+    }
+});
 
-async function fetchKanyeQuote() {
-    fetchData("https://api.kanye.rest/", data => {
-        text.innerText = `"${data.quote}" - Kanye West`;
-    });
-}
-
-async function fetchInspiringQuote() {
-    fetchData("https://api.quotable.io/random", data => {
-        text.innerText = `"${data.content}" - ${data.author}`;
-    });
-}
-
-function copyToClipboard() {
-    navigator.clipboard.writeText(text.innerText).then(() => {
-        alert("Copied to clipboard!");
-    }).catch(() => {
-        alert("Failed to copy text.");
-    });
-}
-
-function showLoading() {
-    text.innerText = "Fetching...";
-    text.classList.add("loading");
-    disableButtons(true);
-}
-
-function hideLoading() {
-    text.classList.remove("loading");
-    disableButtons(false);
-}
-
-function disableButtons(state) {
-    buttons.forEach(button => button.disabled = state);
-}
+document.getElementById("joke-btn").addEventListener("click", () => fetchContent(apis.jokeAPI));
+document.getElementById("dad-joke-btn").addEventListener("click", () => fetchContent(apis.dadJoke, { headers: { "Accept": "application/json" } }));
+document.getElementById("kanye-btn").addEventListener("click", () => fetchContent(apis.kanyeQuote));
+document.getElementById("quote-btn").addEventListener("click", () => fetchContent(apis.randomQuote));
