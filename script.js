@@ -1,5 +1,6 @@
 const text = document.getElementById("text");
 const copyButton = document.getElementById("copy");
+const buttons = document.querySelectorAll("button");
 
 document.getElementById("random").addEventListener("click", fetchRandom);
 document.getElementById("joke").addEventListener("click", fetchJoke);
@@ -11,36 +12,67 @@ copyButton.addEventListener("click", copyToClipboard);
 async function fetchRandom() {
     const apis = [fetchJoke, fetchDadJoke, fetchKanyeQuote, fetchInspiringQuote];
     const randomApi = apis[Math.floor(Math.random() * apis.length)];
-    randomApi();
+    await randomApi();
+}
+
+async function fetchData(url, processData) {
+    try {
+        showLoading();
+        const res = await fetch(url, { headers: { Accept: "application/json" } });
+        if (!res.ok) throw new Error("Failed to fetch data");
+        const data = await res.json();
+        processData(data);
+    } catch (error) {
+        text.innerText = "Oops! Something went wrong. Try again!";
+        console.error(error);
+    } finally {
+        hideLoading();
+    }
 }
 
 async function fetchJoke() {
-    const res = await fetch("https://v2.jokeapi.dev/joke/Any?type=single");
-    const data = await res.json();
-    text.innerText = data.joke;
+    fetchData("https://v2.jokeapi.dev/joke/Any?type=single", data => {
+        text.innerText = data.joke;
+    });
 }
 
 async function fetchDadJoke() {
-    const res = await fetch("https://icanhazdadjoke.com/", {
-        headers: { Accept: "application/json" }
+    fetchData("https://icanhazdadjoke.com/", data => {
+        text.innerText = data.joke;
     });
-    const data = await res.json();
-    text.innerText = data.joke;
 }
 
 async function fetchKanyeQuote() {
-    const res = await fetch("https://api.kanye.rest/");
-    const data = await res.json();
-    text.innerText = `"${data.quote}" - Kanye West`;
+    fetchData("https://api.kanye.rest/", data => {
+        text.innerText = `"${data.quote}" - Kanye West`;
+    });
 }
 
 async function fetchInspiringQuote() {
-    const res = await fetch("https://api.quotable.io/random");
-    const data = await res.json();
-    text.innerText = `"${data.content}" - ${data.author}`;
+    fetchData("https://api.quotable.io/random", data => {
+        text.innerText = `"${data.content}" - ${data.author}`;
+    });
 }
 
 function copyToClipboard() {
-    navigator.clipboard.writeText(text.innerText);
-    alert("Copied to clipboard!");
+    navigator.clipboard.writeText(text.innerText).then(() => {
+        alert("Copied to clipboard!");
+    }).catch(() => {
+        alert("Failed to copy text.");
+    });
+}
+
+function showLoading() {
+    text.innerText = "Fetching...";
+    text.classList.add("loading");
+    disableButtons(true);
+}
+
+function hideLoading() {
+    text.classList.remove("loading");
+    disableButtons(false);
+}
+
+function disableButtons(state) {
+    buttons.forEach(button => button.disabled = state);
 }
