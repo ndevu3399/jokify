@@ -1,9 +1,9 @@
-// Selecting elements
+
 const contentDisplay = document.getElementById("content");
 const loadingMessage = document.getElementById("loading");
 const copyButton = document.getElementById("copy-btn");
 
-// API URLs
+
 const apis = {
     jokeAPI: "https://v2.jokeapi.dev/joke/Any?type=single",
     dadJoke: "https://icanhazdadjoke.com/",
