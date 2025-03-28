@@ -56,7 +56,7 @@ Click "Random" to fetch a joke or quote from a random category.
 
 Click "Copy to Clipboard" to copy the text.
 
-🔥 Future Improvements
+# 🔥 Future Improvements
 🔹 Add a loading animation.
 
 🔹 Store favorite jokes/quotes.
