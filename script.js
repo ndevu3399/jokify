@@ -17,7 +17,7 @@ async function fetchRandom() {
 async function fetchJoke() {
     const res = await fetch("https://v2.jokeapi.dev/joke/Any?type=single");
     const data = await res.json();
-    text.innerText = data.joke;
+    text.innerHTML = `<span class="joke-text">${data.joke}</span>`;
 }
 
 async function fetchDadJoke() {
@@ -25,19 +25,19 @@ async function fetchDadJoke() {
         headers: { Accept: "application/json" }
     });
     const data = await res.json();
-    text.innerText = data.joke;
+    text.innerHTML = `<span class="joke-text">${data.joke}</span>`;
 }
 
 async function fetchKanyeQuote() {
     const res = await fetch("https://api.kanye.rest/");
     const data = await res.json();
-    text.innerText = `"${data.quote}" - Kanye West`;
+    text.innerHTML = `<span class="quote-text">"${data.quote}" - Kanye West</span>`
 }
 
 async function fetchInspiringQuote() {
     const res = await fetch("https://api.quotable.io/random");
     const data = await res.json();
-    text.innerText = `"${data.content}" - ${data.author}`;
+    text.innerHTML = `<span class="quote-text">"${data.content}" - ${data.author}</span>`;
 }
 
 function copyToClipboard() {
