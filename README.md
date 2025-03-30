@@ -1,8 +1,8 @@
-# Jokify - Random Jokes & Quotes
-Jokify is a simple and fun web application that generates random jokes and quotes to brighten your day. Users can get general jokes, dad jokes, Kanye West quotes, and inspirational quotes with a single click.
+# 🎭 Jokify - Random Jokes & Quotes
+Jokify is a fun and simple web application that generates random jokes and quotes to brighten your day. Users can fetch general jokes, dad jokes, Kanye West quotes, and inspirational quotes with a single click.
 
-## 📌 Features
-✅ Get a random joke or quote.
+# 📌 Features
+✅ Get a random joke or quote instantly.
 ✅ Choose from different categories:
 
 😂 General Joke
@@ -11,61 +11,40 @@ Jokify is a simple and fun web application that generates random jokes and quote
 
 🎤 Kanye West Quote
 
-💡 Inspirational Quote
-✅ Copy jokes/quotes to clipboard.
+✅ Copy jokes/quotes to clipboard for easy sharing.
+✅ Smooth animations for a better user experience.
 ✅ Simple and clean UI with a light blue and white theme.
-✅ Smooth animations for better user experience.
 
 # 🛠 Technologies Used
-HTML - Structuring the webpage.
+HTML – Structuring the webpage.
 
-CSS - Styling the UI with custom fonts and solid background colors.
+CSS – Styling the UI with a clean and modern look.
 
-JavaScript - Fetching jokes/quotes from public APIs and handling interactivity.
+JavaScript – Fetching jokes/quotes from public APIs and handling interactivity.
 
 # 🌍 APIs Used
 Jokify fetches content from the following APIs:
 
-🎭 JokeAPI - General jokes
+🎭 JokeAPI – General jokes 
 
-👨 Icanhazdadjoke - Dad jokes
+👨 Icanhazdadjoke – Dad jokes
 
-🎤 Kanye Rest - Kanye West quotes
+🎤 Kanye Rest API – Kanye West quotes
 
-📖 Alternative Quote APIs (Choose One):
-
-They Said So API
-
-QuoteGarden API
-
-Quotable API
 
 # 🚀 Installation & Setup
-Clone this repository:
+1️⃣ Clone this repository:
 
-bash
-Copy
-Edit
-git clone https://github.com/ndevu3399/jokify.git
-Open index.html in a web browser.
+git clone git@github.com:ndevu3399/jokify.git
+2️⃣ Open index.html in a web browser.
 
 # 🎮 How to Use
-Click on any category button to get a joke or quote.
+🖱 Click on any category button to get a joke or quote.
+🔀 Click "Random" to fetch a joke or quote from a random category.
+📋 Click "Copy to Clipboard" to copy the text for easy sharing.
 
-Click "Random" to fetch a joke or quote from a random category.
-
-Click "Copy to Clipboard" to copy the text.
-
-# 🔥 Future Improvements
-🔹 Add a loading animation.
-
-🔹 Store favorite jokes/quotes.
-
-🔹 Allow users to share jokes via social media.
-
-# 🤝 Contributing
-Feel free to fork the repository and submit pull requests for improvements.
 
 # 📜 License
 This project is open-source and free to use.
+
 
