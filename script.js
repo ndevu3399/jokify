@@ -41,6 +41,11 @@ async function fetchInspiringQuote() {
 }
 
 function copyToClipboard() {
-    navigator.clipboard.writeText(text.innerText);
-    alert("Copied to clipboard!");
+    navigator.clipboard.writeText(text.innerText).then(() => {
+        const copiedMsg = document.createElement("div");
+        copiedMsg.innerText = "✅ Copied!";
+        copiedMsg.classList.add("copy-message");
+        text.appendChild(copiedMsg);
+        setTimeout(() => copiedMsg.remove(), 2000);
+    }).catch(err => console.error("Copy failed:", err));
 }
