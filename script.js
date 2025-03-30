@@ -5,7 +5,6 @@ document.getElementById("random").addEventListener("click", fetchRandom);
 document.getElementById("joke").addEventListener("click", fetchJoke);
 document.getElementById("dadJoke").addEventListener("click", fetchDadJoke);
 document.getElementById("kanye").addEventListener("click", fetchKanyeQuote);
-document.getElementById("inspire").addEventListener("click", fetchInspiringQuote);
 copyButton.addEventListener("click", copyToClipboard);
 
 async function fetchRandom() {
