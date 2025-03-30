@@ -35,7 +35,7 @@ async function fetchKanyeQuote() {
 }
 
 async function fetchInspiringQuote() {
-    const res = await fetch("https://api.quotable.io/random");
+    const res = await fetch("https://zenquotes.io/api/random");
     const data = await res.json();
     text.innerHTML = `<span class="quote-text">"${data.content}" - ${data.author}</span>`;
 }
