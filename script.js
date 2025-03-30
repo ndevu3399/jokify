@@ -8,7 +8,7 @@ document.getElementById("kanye").addEventListener("click", fetchKanyeQuote);
 copyButton.addEventListener("click", copyToClipboard);
 
 async function fetchRandom() {
-    const apis = [fetchJoke, fetchDadJoke, fetchKanyeQuote, fetchInspiringQuote];
+    const apis = [fetchJoke, fetchDadJoke, fetchKanyeQuote,];
     const randomApi = apis[Math.floor(Math.random() * apis.length)];
     randomApi();
 }
