@@ -34,11 +34,6 @@ async function fetchKanyeQuote() {
     text.innerHTML = `<span class="quote-text">"${data.quote}" - Kanye West</span>`
 }
 
-async function fetchInspiringQuote() {
-    const res = await fetch("https://zenquotes.io/api/random");
-    const data = await res.json();
-    text.innerHTML = `<span class="quote-text">"${data.content}" - ${data.author}</span>`;
-}
 
 function copyToClipboard() {
     navigator.clipboard.writeText(text.innerText).then(() => {
