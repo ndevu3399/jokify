@@ -1,5 +1,5 @@
 # 🎭 Jokify - Random Jokes & Quotes
-Jokify is a fun and simple web application that generates random jokes and quotes to brighten your day. Users can fetch general jokes, dad jokes, Kanye West quotes, and inspirational quotes with a single click.
+Jokify is a fun and simple web application that generates random jokes and quotes to brighten your day. Users can fetch general jokes, dad jokes, and Kanye West quotes with a single click.
 
 # 📌 Features
 ✅ Get a random joke or quote instantly.
